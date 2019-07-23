@@ -65,8 +65,18 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'books_toscrape_com.pipelines.JsonWritePipeline': 300,
+    'books_toscrape_com.pipelines.JsonPipeline': 300,
 }
+
+# JsonPipeline configuration
+
+# Output directory (must end with a slash)
+JSON_PIPELINE_OUTPUT = '/tmp/scrapy/'
+# Output filename available formats:
+# %(name)s -> Spider name
+# %(json_filename)s -> Spider json_filename (may not exists)
+JSON_PIPELINE_FORMAT = '%(name)s.json'
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
