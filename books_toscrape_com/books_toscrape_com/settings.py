@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'books_toscrape_com.pipelines.JsonPipeline': 300,
+#    'books_toscrape_com.pipelines.JsonPipeline': 300,
 }
 
 # JsonPipeline configuration
@@ -103,3 +103,26 @@ JSON_PIPELINE_FORMAT = '%(name)s.json'
 # Logging
 # Available levels are: CRITICAL, ERROR, WARNING, INFO and DEBUG.
 LOG_LEVEL = 'INFO'
+
+
+# Feed exports
+FEED_URI = '/tmp/scrapy/exports.csv'
+FEED_FORMAT = 'csv'
+FEED_EXPORT_ENCODING = 'utf-8'
+FEED_EXPORT_FIELDS = ['href', 'category']
+
+FEED_STORAGES = {
+    's3': None,
+    'ftp': None
+}
+
+FEED_EXPORTERS = {
+    'jsonlines': None,
+    'jl': None,
+    'xml': None,
+    'marshal': None,
+    'pickle': None,
+    'csv': 'books_toscrape_com.exporters.CsvExtendedItemExporter'
+}
+
+CSV_DELIMITER = ';'
